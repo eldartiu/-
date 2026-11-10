@@ -1,0 +1,137 @@
+/* Сброс и базовые стили */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  line-height: 1.5;
+  padding: 24px 16px;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header__title {
+  font-size: 28px;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.header__subtitle {
+  font-size: 16px;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   Шаг 3: Резервный вертикальный вариант (Fallback)
+   Для старых браузеров без поддержки display: grid.
+   Карточки идут одна за другой блочно с нижним отступом margin-bottom.
+   ========================================================================== */
+.shop-card {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Шаг 3: Современный Grid включается только при поддержке браузером
+   ========================================================================== */
+@supports (display: grid) {
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .shop-card {
+    margin-bottom: 0; /* Отступ обнуляется, так как расстояние задано через gap */
+  }
+}
+
+/* ==========================================================================
+   Шаг 4: Адаптация под узкий мобильный экран
+   ========================================================================== */
+@media (max-width: 520px) {
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Шаг 5: Самостоятельное оформление элементов карточки
+   ========================================================================== */
+.shop-card__badge {
+  align-self: flex-start;
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.shop-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.shop-card__spec {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.shop-card__price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin-bottom: 16px;
+}
+
+.shop-card__action {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.4);
+    outline-offset: 2px;
+  }
+}
