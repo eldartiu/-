@@ -135,3 +135,7 @@ body {
     outline-offset: 2px;
   }
 }
+
+body {
+    background-color: #e8f0ff;
+}
